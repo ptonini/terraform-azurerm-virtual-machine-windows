@@ -3,7 +3,7 @@ variable "name" {}
 variable "rg" {
   type = object({
     name      = string
-    locations = string
+    location = string
   })
 }
 
