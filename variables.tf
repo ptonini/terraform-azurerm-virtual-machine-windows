@@ -41,7 +41,7 @@ variable "size" {
   default = "Standard_B1s"
 }
 
-variable "source_image_reference" {
+variable "source_image_id" {
   default = null
 }
 
@@ -49,7 +49,7 @@ variable "os_disk_size_gb" {
   default = 30
 }
 
-variable "source_image_id" {
+variable "source_image_reference" {
   type = object({
     publisher = string
     offer     = string
