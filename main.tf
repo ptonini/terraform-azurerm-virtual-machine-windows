@@ -1,4 +1,4 @@
-module "before" {
+module "requirements" {
   source        = "ptonini/vm-requirements/azurerm"
   version       = "~> 1.0.0"
   name          = var.name
@@ -19,8 +19,8 @@ resource "azurerm_windows_virtual_machine" "this" {
   size                  = var.size
   admin_username        = var.admin_username
   admin_password        = var.admin_username
-  availability_set_id   = module.before.availability_set_id
-  network_interface_ids = [module.before.network_interface_ids[count.index]]
+  availability_set_id   = module.requirements.availability_set_id
+  network_interface_ids = [module.requirements.network_interface_ids[count.index]]
   source_image_id       = var.source_image_id
   max_bid_price         = var.max_bid_price
   priority              = var.priority
@@ -72,8 +72,8 @@ resource "azurerm_windows_virtual_machine" "this" {
   }
 }
 
-module "after" {
-  source             = "ptonini/vm-dependencies/azurerm"
+module "dependants" {
+  source             = "ptonini/vm-dependants/azurerm"
   version            = "~> 1.0.0"
   count              = var.host_count
   rg                 = var.rg
